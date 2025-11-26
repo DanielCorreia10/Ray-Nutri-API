@@ -1,13 +1,14 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, HttpStatus } from '@nestjs/common';
 import { ConsultaService } from './consulta.service';
 import { CreateConsultaDto } from './dto/create-consulta.dto';
 import { UpdateConsultaDto } from './dto/update-consulta.dto';
 
-@Controller('consulta')
+@Controller('consultas') 
 export class ConsultaController {
   constructor(private readonly consultaService: ConsultaService) {}
 
   @Post()
+  @HttpCode(HttpStatus.CREATED)
   create(@Body() createConsultaDto: CreateConsultaDto) {
     return this.consultaService.create(createConsultaDto);
   }
@@ -28,6 +29,7 @@ export class ConsultaController {
   }
 
   @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
   remove(@Param('id') id: string) {
     return this.consultaService.remove(+id);
   }
