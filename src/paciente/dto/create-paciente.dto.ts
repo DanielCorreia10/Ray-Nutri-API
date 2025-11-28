@@ -4,7 +4,7 @@ import { Type } from 'class-transformer'; // Necessário para garantir que tipos
 export class CreatePacienteDto {
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   nome: string;
 
   @IsString()
@@ -12,28 +12,26 @@ export class CreatePacienteDto {
   sobrenome?: string;
 
   @IsString()
-  @IsNotEmpty()
-  @IsNumberString() 
-  @Matches(/^\d{10,11}$/, { message: 'Celular deve ter 10 ou 11 dígitos numéricos.' })
+  @IsOptional()
   celular: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   // Espera formato AAAA-MM-DD
-  dataNascimento: string; 
+  dataNascimento: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @IsIn(['masculino', 'feminino'])
   sexo: 'masculino' | 'feminino';
 
-  @IsEmail()
+  @IsString()
   @IsOptional()
   email?: string;
 
   @IsString()
   @IsOptional()
-  primeiraConsulta?: string; 
+  primeiraConsulta?: string;
 
   @IsString()
   @IsOptional()
